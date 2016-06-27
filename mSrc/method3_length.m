@@ -22,9 +22,9 @@ for i = 1:114
         num_child  = A(i,7);
         c1   = A(i,8);
         c2   = A(i,9);
-        rk = A(i,4);
+        lk = A(i,3);
         %rk = A(idx_par,5);
-        arr = [arr rk];
+        arr = [arr lk];
     end
 end
 %numIntervals = 10;
@@ -53,14 +53,12 @@ end
 frequency = log(frequency);
 bins = log(bins);
 y2 = min(find(frequency == max(frequency)));
-bar1 = bar(bins, frequency, 1);
-title('Regression-based calculation of a');
-xlabel('ln(radius)') % x-axis label
-ylabel('ln(frequency of the radius)') % y-axis label
+bar(bins, frequency, 1);
+title('Regression-based calculation of b');
+xlabel('ln(length)') % x-axis label
+ylabel('ln(frequency of the length)') % y-axis label
 x = [bins(y2) bins(50)];
 y = [max(frequency) frequency(50)];
 hold on;
 plot(x,y);
 -1/((max(frequency)-frequency(50))/(bins(y2)-bins(50)))
-print( 'method3.m','-dpng','-r300'); 
-saveas(bar1,'method3_radius.png') 

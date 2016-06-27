@@ -12,7 +12,7 @@ A = A.data;
 arr = [];
 nRows = size(A,1) %rows 2-124
 % loop through all the ...
-for i = 1:114
+for i = 1:113
     if(A(i,6) > 0)
         name = A(i,1);
         vol  = A(i,2);
@@ -28,7 +28,7 @@ for i = 1:114
         %rk1 = A(i,5);
         rk = A(idx_par,4);
         %rk = A(idx_par,5);
-        a = abs(calcA(rk,rk1));
+        a = (calcA(rk,rk1));
         if(a < 20)
           arr = [arr a];
         end
@@ -38,7 +38,6 @@ sum = 0;
 for i = 1:length(arr)
     sum = sum + arr(i);
 end
-a = sum/length(arr)
 
 %numIntervals = 10;
 %intervalWidth = (max(arr)-min(arr))/numIntervals;
@@ -64,3 +63,7 @@ for i = 1:50
     frequency = [frequency count];
 end
 bar(bins, frequency, 1);
+title('Ratio-based calculation of a');
+xlabel('radius') % x-axis label
+ylabel('frequency of the radius') % y-axis label
+a = sum/length(arr)

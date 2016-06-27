@@ -10,8 +10,9 @@ A = A.data;
 % A{1,4} = '<r>_vl';
 % A{1,5} = '<r>_obs';
 arr = [];
+nRows = size(A,1) %rows 2-124
 % loop through all the ...
-for i = 1:114
+for i = 1:113
     if(A(i,6) > 0)
         name = A(i,1);
         vol  = A(i,2);
@@ -22,10 +23,20 @@ for i = 1:114
         num_child  = A(i,7);
         c1   = A(i,8);
         c2   = A(i,9);
-        rk = A(i,4);
+        idx_par = find(round(A(:,1))==par);
+        lk1 = A(i,3);
+        %rk1 = A(i,5);
+        lk = A(idx_par,3);
         %rk = A(idx_par,5);
-        arr = [arr rk];
+        a = (calcA(lk,lk1));
+        if(a < 20)
+          arr = [arr a];
+        end
     end
+end
+sum = 0;
+for i = 1:length(arr)
+    sum = sum + arr(i);
 end
 %numIntervals = 10;
 %intervalWidth = (max(arr)-min(arr))/numIntervals;
@@ -50,17 +61,8 @@ for i = 1:50
     end
     frequency = [frequency count];
 end
-frequency = log(frequency);
-bins = log(bins);
-y2 = min(find(frequency == max(frequency)));
-bar1 = bar(bins, frequency, 1);
-title('Regression-based calculation of a');
-xlabel('ln(radius)') % x-axis label
-ylabel('ln(frequency of the radius)') % y-axis label
-x = [bins(y2) bins(50)];
-y = [max(frequency) frequency(50)];
-hold on;
-plot(x,y);
--1/((max(frequency)-frequency(50))/(bins(y2)-bins(50)))
-print( 'method3.m','-dpng','-r300'); 
-saveas(bar1,'method3_radius.png') 
+bar(bins, frequency, 1);
+title('Ratio-based calculation of b');
+xlabel('length') % x-axis label
+ylabel('frequency of the length') % y-axis label
+a = sum/length(arr)
