@@ -1,16 +1,16 @@
-% A = importdata('summary_withRoots.tsv');
+% method3 is a matlab script to plot the log of the relative frequencies of the
+% log of radii of vessels from a data set, then calculate the scaling
+% exponent, a, by finding the slope of between the highest frequency radius
+% and the lowest frequency radius
+%HISTORY	
+%	Jocie Shen, 6/23/16, first written
+%============================================================
 clear all; close all; clc;
 A = importdata('ttt.txt');
 A = A.data;
-% A = A.textdata;
-% B = A.data;
-% A{1,1} = 'name';
-% A{1,2} = 'vol';
-% A{1,3} = 'len';
-% A{1,4} = '<r>_vl';
-% A{1,5} = '<r>_obs';
+
 arr = [];
-% loop through all the ...
+
 for i = 1:114
     if(A(i,6) > 0)
         name = A(i,1);
@@ -22,9 +22,9 @@ for i = 1:114
         num_child  = A(i,7);
         c1   = A(i,8);
         c2   = A(i,9);
-        rk = A(i,4);
+        lk = A(i,4);
         %rk = A(idx_par,5);
-        arr = [arr rk];
+        arr = [arr lk];
     end
 end
 %numIntervals = 10;
@@ -38,7 +38,7 @@ end
 
 bins = logspace(log10(min(arr)), log10(max(arr)));
 frequency = [];
-for i = 1:50
+for i = 1:length(bins)
     count = 0;
     for a = arr
         if i ==50
@@ -53,7 +53,7 @@ end
 frequency = log(frequency);
 bins = log(bins);
 y2 = min(find(frequency == max(frequency)));
-bar1 = bar(bins, frequency, 1);
+bar(bins, frequency, 1);
 title('Regression-based calculation of a');
 xlabel('ln(radius)') % x-axis label
 ylabel('ln(frequency of the radius)') % y-axis label
@@ -62,5 +62,3 @@ y = [max(frequency) frequency(50)];
 hold on;
 plot(x,y);
 -1/((max(frequency)-frequency(50))/(bins(y2)-bins(50)))
-print( 'method3.m','-dpng','-r300'); 
-saveas(bar1,'method3_radius.png') 

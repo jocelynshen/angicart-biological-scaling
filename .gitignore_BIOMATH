@@ -1,0 +1,11 @@
+#zip files
+*.zip
+
+#pyc files
+*.pyc
+
+#sqlite files
+*.sqlite
+
+#matlab asv files
+*.asv

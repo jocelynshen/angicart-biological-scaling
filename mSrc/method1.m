@@ -1,18 +1,22 @@
-% A = importdata('summary_withRoots.tsv');
+% method1 is a matlab script to plot the values of the scaling exponent a,
+% their frequencies, and return the mean of this set of scaling exponents
+%HISTORY	
+%	Jocie Shen, 6/23/16, first written
+%============================================================
 clear all; close all; clc;
-A = importdata('ttt.txt');
+
+% input data from data file
+dataFile = '../data/ttt.txt';
+A = importdata(dataFile);
 A = A.data;
-% A = A.textdata;
-% B = A.data;
-% A{1,1} = 'name';
-% A{1,2} = 'vol';
-% A{1,3} = 'len';
-% A{1,4} = '<r>_vl';
-% A{1,5} = '<r>_obs';
-arr = [];
-nRows = size(A,1) %rows 2-124
-% loop through all the ...
-for i = 1:113
+
+arr = []; 						% arr is an array that stores values of a
+nRows = size(A,1)             
+
+% iLast = findLastRow(A);
+iLast = 114;
+for i = 1:iLast
+    %Makes sure a parent exists
     if(A(i,6) > 0)
         name = A(i,1);
         vol  = A(i,2);
@@ -28,16 +32,14 @@ for i = 1:113
         %rk1 = A(i,5);
         rk = A(idx_par,4);
         %rk = A(idx_par,5);
-        a = (calcA(rk,rk1));
-        if(a < 20)
+        a = calcA(rk,rk1);
+        if(a < 20)                %prevent values of infinity
           arr = [arr a];
         end
     end
 end
-sum = 0;
-for i = 1:length(arr)
-    sum = sum + arr(i);
-end
+
+a = mean(arr)
 
 %numIntervals = 10;
 %intervalWidth = (max(arr)-min(arr))/numIntervals;
@@ -50,6 +52,7 @@ end
 
 bins = logspace(log10(min(arr)), log10(max(arr)));
 frequency = [];
+
 for i = 1:50
     count = 0;
     for a = arr
@@ -62,8 +65,11 @@ for i = 1:50
     end
     frequency = [frequency count];
 end
+
+figure; box on; hold on; grid on; 
 bar(bins, frequency, 1);
-title('Ratio-based calculation of a');
-xlabel('radius') % x-axis label
-ylabel('frequency of the radius') % y-axis label
-a = sum/length(arr)
+title('Ratio-based calculation of a','fontweight','bold');
+xlabel('LOG_1_0(radius)','fontweight','bold') % x-axis label
+ylabel('frequency of the radius','fontweight','bold') % y-axis label
+
+

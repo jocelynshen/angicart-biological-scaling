@@ -1,17 +1,17 @@
-% A = importdata('summary_withRoots.tsv');
+% method1_length is a matlab script to plot the values of the scaling exponent b,
+% their frequencies, and return the mean of this set of scaling exponents
+%HISTORY	
+%	Jocie Shen, 6/23/16, first written
+%============================================================
 clear all; close all; clc;
-A = importdata('ttt.txt');
+%input data from text file
+datafile = 'ttt.txt';
+A = importdata(datafile);
 A = A.data;
-% A = A.textdata;
-% B = A.data;
-% A{1,1} = 'name';
-% A{1,2} = 'vol';
-% A{1,3} = 'len';
-% A{1,4} = '<r>_vl';
-% A{1,5} = '<r>_obs';
-arr = [];
-nRows = size(A,1) %rows 2-124
-% loop through all the ...
+
+arr = [];                         %stores values of the scaling exponent, b
+nRows = size(A,1) 
+
 for i = 1:113
     if(A(i,6) > 0)
         name = A(i,1);
@@ -34,10 +34,9 @@ for i = 1:113
         end
     end
 end
-sum = 0;
-for i = 1:length(arr)
-    sum = sum + arr(i);
-end
+
+a = mean(arr)
+
 %numIntervals = 10;
 %intervalWidth = (max(arr)-min(arr))/numIntervals;
 %x = min(arr):intervalWidth:max(arr);
@@ -61,8 +60,9 @@ for i = 1:50
     end
     frequency = [frequency count];
 end
+
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b');
-xlabel('length') % x-axis label
-ylabel('frequency of the length') % y-axis label
-a = sum/length(arr)
+xlabel('LOG_1_0(length)','fontweight','bold') % x-axis label
+ylabel('frequency of the length','fontweight','bold') % y-axis label
+

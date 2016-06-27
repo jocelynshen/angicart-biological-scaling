@@ -1,16 +1,17 @@
-% A = importdata('summary_withRoots.tsv');
+% method3_length is a matlab script to plot the log of the relative frequencies of the
+% log of lengths of vessels from a data set, then calculate the scaling
+% exponent, b by finding the slope of between the highest frequency length
+% and the lowest frequency length
+%HISTORY	
+%	Jocie Shen, 6/23/16, first written
+%============================================================
 clear all; close all; clc;
-A = importdata('ttt.txt');
+%import data file
+datafile = 'ttt.txt';
+A = importdata(datafile);
 A = A.data;
-% A = A.textdata;
-% B = A.data;
-% A{1,1} = 'name';
-% A{1,2} = 'vol';
-% A{1,3} = 'len';
-% A{1,4} = '<r>_vl';
-% A{1,5} = '<r>_obs';
+
 arr = [];
-% loop through all the ...
 for i = 1:114
     if(A(i,6) > 0)
         name = A(i,1);
@@ -38,7 +39,7 @@ end
 
 bins = logspace(log10(min(arr)), log10(max(arr)));
 frequency = [];
-for i = 1:50
+for i = 1:length(bins)
     count = 0;
     for a = arr
         if i ==50
