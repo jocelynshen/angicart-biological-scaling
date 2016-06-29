@@ -1,5 +1,5 @@
 function a = calcA(rk, rk1)
-a = -log10(rk1/rk)/(log10(2));
+a = -log(rk1/rk)/(log(2));
 %calcA: function that calculates the scaling exponent
 %SYNOPSIS
 % a = calcA(rk, rk1)

@@ -10,31 +10,19 @@ A = importdata(datafile);
 A = A.data;
 
 arr = [];                         %stores values of the scaling exponent, b
-nRows = size(A,1) 
 
-for i = 1:113
-    if(A(i,6) > 0)
-        name = A(i,1);
-        vol  = A(i,2);
-        len  = A(i,3);
-        r1   = A(i,4);
-        r2   = A(i,5);
+for i = 1:length(A)
+    if(~isnan(A(i,6)))
         par  = A(i,6);
-        num_child  = A(i,7);
-        c1   = A(i,8);
-        c2   = A(i,9);
         idx_par = find(round(A(:,1))==par);
         lk1 = A(i,3);
-        %rk1 = A(i,5);
         lk = A(idx_par,3);
-        %rk = A(idx_par,5);
-        a = (calcA(lk,lk1));
-        if(a < 20)
-          arr = [arr a];
+        a = calcA(lk,lk1);
+        if(abs(a) ~= Inf)
+            arr = [arr a];
         end
     end
 end
-
 a = mean(arr)
 
 %numIntervals = 10;
@@ -63,6 +51,6 @@ end
 
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b');
-xlabel('LOG_1_0(length)','fontweight','bold') % x-axis label
-ylabel('frequency of the length','fontweight','bold') % y-axis label
+xlabel('length scaling exponent b','fontweight','bold') % x-axis label
+ylabel('relative frequency','fontweight','bold') % y-axis label
 

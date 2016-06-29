@@ -6,35 +6,22 @@
 clear all; close all; clc;
 
 % input data from data file
-dataFile = '../data/ttt.txt';
+dataFile = 'ttt.txt';
 A = importdata(dataFile);
 A = A.data;
 
-arr = []; 						% arr is an array that stores values of a
-nRows = size(A,1)             
+arr = []; 						% arr is an array that stores values of a       
 
-% iLast = findLastRow(A);
-iLast = 114;
-for i = 1:iLast
+for i = 1:length(A)
     %Makes sure a parent exists
-    if(A(i,6) > 0)
-        name = A(i,1);
-        vol  = A(i,2);
-        len  = A(i,3);
-        r1   = A(i,4);
-        r2   = A(i,5);
+    if(~isnan(A(i,6)))
         par  = A(i,6);
-        num_child  = A(i,7);
-        c1   = A(i,8);
-        c2   = A(i,9);
         idx_par = find(round(A(:,1))==par);
         rk1 = A(i,4);
-        %rk1 = A(i,5);
         rk = A(idx_par,4);
-        %rk = A(idx_par,5);
         a = calcA(rk,rk1);
-        if(a < 20)                %prevent values of infinity
-          arr = [arr a];
+        if(abs(a) ~= Inf)
+            arr = [arr a];
         end
     end
 end
@@ -65,11 +52,10 @@ for i = 1:50
     end
     frequency = [frequency count];
 end
-
 figure; box on; hold on; grid on; 
 bar(bins, frequency, 1);
 title('Ratio-based calculation of a','fontweight','bold');
-xlabel('LOG_1_0(radius)','fontweight','bold') % x-axis label
-ylabel('frequency of the radius','fontweight','bold') % y-axis label
+xlabel('radius scaling exponent a','fontweight','bold') % x-axis label
+ylabel('frequency of the scaling exponent','fontweight','bold') % y-axis label
 
 

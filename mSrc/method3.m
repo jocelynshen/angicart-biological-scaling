@@ -11,20 +11,10 @@ A = A.data;
 
 arr = [];
 
-for i = 1:114
-    if(A(i,6) > 0)
-        name = A(i,1);
-        vol  = A(i,2);
-        len  = A(i,3);
-        r1   = A(i,4);
-        r2   = A(i,5);
-        par  = A(i,6);
-        num_child  = A(i,7);
-        c1   = A(i,8);
-        c2   = A(i,9);
-        lk = A(i,4);
-        %rk = A(idx_par,5);
-        arr = [arr lk];
+for i = 1:length(A)
+    if(~isnan(A(i,6)))
+        rk = A(i,4);
+        arr = [arr rk];
     end
 end
 %numIntervals = 10;
@@ -55,8 +45,8 @@ bins = log(bins);
 y2 = min(find(frequency == max(frequency)));
 bar(bins, frequency, 1);
 title('Regression-based calculation of a');
-xlabel('ln(radius)') % x-axis label
-ylabel('ln(frequency of the radius)') % y-axis label
+xlabel('LOG(radius)') % x-axis label
+ylabel('LOG(frequency of the radius)') % y-axis label
 x = [bins(y2) bins(50)];
 y = [max(frequency) frequency(50)];
 hold on;
