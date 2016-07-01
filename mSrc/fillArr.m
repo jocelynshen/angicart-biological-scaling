@@ -7,11 +7,13 @@ A = A.data;
 
 arr = [];
 for i = 1:length(A)
-    if(~isnan(A(i,6)))
+    if(~isnan(A(i,9)))
         if(method == 1)
             if(rl == 'r')
             par  = A(i,6);
+            %par = A(i,9);
             idx_par = find(round(A(:,1))==par);
+            %idx_par = find((A(:,1))==par);
             rk1 = A(i,4);
             rk = A(idx_par,4);
             a = calcA(rk,rk1);
@@ -21,9 +23,13 @@ for i = 1:length(A)
             end
             if(rl == 'l')
             par  = A(i,6);
+            %par = A(i,9);
             idx_par = find(round(A(:,1))==par);
+            %idx_par = find((A(:,1))==par);
             rk1 = A(i,3);
+            %rk1 = A(i,2);
             rk = A(idx_par,3);
+            %rk = A(idx_par, 2);
             a = calcA(rk,rk1);
             if(abs(a) ~= Inf)
                 arr = [arr a];
@@ -32,7 +38,7 @@ for i = 1:length(A)
        end
    end
    if(method == 3)
-        if(~isnan(A(i,6)))
+        if(~isnan(A(i,9)))
             if(rl == 'r')
             a = A(i,4);
             if(abs(a) ~= Inf)
@@ -41,6 +47,7 @@ for i = 1:length(A)
             end
             if(rl == 'l')
             a = A(i,3);
+            %a = A(i,2);
             if(abs(a) ~= Inf)
                 arr = [arr a];
             end
