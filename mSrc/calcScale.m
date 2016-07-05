@@ -7,7 +7,7 @@ clear all; close all; clc;
 
 %Ratio-based method: Scaling exponent a
 subplot(2,2,1);box on; hold on; grid on;
-arr = fillArr(1, 'r');
+arr = fillArrAngicart(1, 'r')
 %data = arr(:);
 %num2str(data)
 [bins, frequency] = getBinFreq(arr);
