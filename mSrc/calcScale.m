@@ -7,9 +7,8 @@ clear all; close all; clc;
 
 %Ratio-based method: Scaling exponent a
 subplot(2,2,1);box on; hold on; grid on;
-arr = fillArrAngicart(1, 'r')
-%data = arr(:);
-%num2str(data)
+%arr = fillArrAngicart(1, 'r');
+arr = fillArr(1, 'r');
 [bins, frequency] = getBinFreq(arr);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of a','fontweight','bold');
@@ -19,9 +18,8 @@ mean(arr)
 
 %Ratio-based method: Scaling exponent b
 subplot(2,2,2);box on; hold on; grid on;
-arr = fillArrAngicart(1, 'l');
-%data = arr(:);
-%num2str(data)
+%arr = fillArrAngicart(1, 'l');
+arr = fillArr(1, 'l');
 [bins, frequency] = getBinFreq(arr);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b','fontweight','bold');
@@ -31,19 +29,21 @@ mean(arr)
 
 %Regression-based method: Scaling exponent a
 subplot(2,2,3);box on; hold on; grid on;
-arr = fillArrAngicart(3, 'r');
+%arr = fillArrAngicart(3, 'r');
+arr = fillArr(3, 'r');
 [bins, frequency] = getBinFreq(arr);
 bar(bins, frequency, 1);
-title('Regression-based calculation of a');
-xlabel('LOG(radius)') % x-axis label
-ylabel('LOG(frequency of the radius)') % y-axis label
+title('Regression-based calculation of a','fontweight','bold');
+xlabel('LOG(radius)','fontweight','bold')         % x-axis label
+ylabel('LOG(frequency of the radius)','fontweight','bold') % y-axis label
 
 %Regression-based method: Scaling exponent b
 subplot(2,2,4);box on; hold on; grid on;
-arr = fillArrAngicart(3, 'l');
+%arr = fillArrAngicart(3, 'l');
+arr = fillArr(3, 'l');
 [bins, frequency] = getBinFreq(arr);
 bar(bins, frequency, 1);
-title('Regression-based calculation of b');
-xlabel('LOG(length)') % x-axis label
-ylabel('LOG(frequency of the length)') % y-axis label
+title('Regression-based calculation of b','fontweight','bold');
+xlabel('LOG(length)','fontweight','bold')         % x-axis label
+ylabel('LOG(frequency of the length)','fontweight','bold') % y-axis label
 

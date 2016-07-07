@@ -1,6 +1,17 @@
 function arr = fillArrAngicart(method, option)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%fillArrAngicart: uses Angicart data and fills array with scaling exponents if method 1 is being
+%used, radius and length if method 3 or compare is being used
+%
+%INPUT:
+% method: determines which method to use to calculate scaling exponents
+% option: radius or length
+%
+%EXAMPLES
+% arr = fillArr(1, 'r');
+%
+%HISTORY	
+%	Jocie Shen, 7/7/16, first written
+%============================================================
 dataPath=['C:\Project\Biomathematics\mSrc\angicartdata.txt']
 [alldataStructure]=tdfread(dataPath, 'tab');
 alldata = [
@@ -50,6 +61,12 @@ for irow = 1:nData
                 arr = [arr a];
             end
         end
+   end
+   if(method == 0 & strcmp(option,'r'))                    %used to plot frequency of radius to compare software
+       arr = [arr cell2mat(S.rad(irow))];
+   end
+   if(method == 0 & strcmp(option,'l'))                    %used to plot frequency of length to compare software
+       arr = [arr cell2mat(S.len(irow))];
    end
 end
 end
