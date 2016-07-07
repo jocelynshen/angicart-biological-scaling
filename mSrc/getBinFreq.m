@@ -15,6 +15,7 @@ function [ bins, frequency ] = getBinFreq( arr)
 %HISTORY	
 %	Jocie Shen, 6/23/16, first written
 %============================================================
+
 bins = logspace(log10(min(arr)), log10(max(arr)));
 frequency = [];
 

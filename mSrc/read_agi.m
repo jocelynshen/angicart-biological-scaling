@@ -1,7 +1,7 @@
-function S = read_agi(fname)
+%function S = read_agi(fname)
 
-if nargin<1, fname = 'angicartdata.txt';end
-
+%if nargin<1, fname = 'angicartdata.txt';end
+fname = 'angicartdata.txt'
 fid=fopen(fname,'r');
 
 % -- open the file 
