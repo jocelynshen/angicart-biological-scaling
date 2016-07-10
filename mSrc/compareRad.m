@@ -5,13 +5,12 @@
 %	Jocie Shen, 7/7/16, first written
 %============================================================
 clear all; close all; clc;
-
-arr = fillArrAngicart(0, 'r')
+arr = fillArr(1, 'r', 'angicart', 'C:\Project\Biomathematics\mSrc\angicartdata.txt')
 [bins, frequency] = getBinFreq(arr);
 bar(bins, frequency, 1, 'r');
 title('Comparing radius frequency (angicart vs C++)','fontweight','bold');
 hold on;
-arr = fillArr(0, 'r')
+arr = fillArr(1, 'r', 'C++', 'ttt.txt')
 [bins, frequency] = getBinFreq(arr);
 bar(bins, frequency, 1);
 legend('Angicart','C++','Location','northwest')
