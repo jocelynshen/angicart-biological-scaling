@@ -20,7 +20,7 @@ if(strcmp(software, 'C++'))
     A = A.data;
     name   = num2cell(A(:,1));
     len    = num2cell(A(:,3));
-    rad    = num2cell(A(:,4));
+    rad    = num2cell(A(:,5));
     parent = num2cell(A(:,6));
 else
     dataPath=[datafile];
