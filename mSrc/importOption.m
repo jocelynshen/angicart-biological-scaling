@@ -1,4 +1,4 @@
-function [ name, len, rad, parent ] = importOption(software, datafile)
+function [ name, len, rad, parent, tips ] = importOption(software, datafile)
 %getBinFreq: function that creates the bins and the frequency to plot the
 %scaling exponents
 %
@@ -22,6 +22,7 @@ if(strcmp(software, 'C++'))
     len    = num2cell(A(:,3));
     rad    = num2cell(A(:,5));
     parent = num2cell(A(:,6));
+    tips = [];
 else
     dataPath=[datafile];
     [alldataStructure]=tdfread(dataPath, 'tab');
@@ -29,6 +30,7 @@ else
     len    = num2cell(alldataStructure.len);
 	rad    = num2cell(alldataStructure.rad);
 	parent = cellstr(alldataStructure.parent);
+    tips = num2cell(alldataStructure.tips);
 end
 end
 

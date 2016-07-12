@@ -4,6 +4,10 @@ function arr = fillArr(method, option, software, datafile)
 %
 %INPUT:
 % method: determines which method to use to calculate scaling exponents
+%         1) Conservation-based
+%         2) Ratio-based
+%         3) Distribution-based
+%         4) Regression-based
 % option: radius or length
 %
 %EXAMPLES
@@ -12,7 +16,7 @@ function arr = fillArr(method, option, software, datafile)
 %HISTORY	
 %	Jocie Shen, 7/7/16, first written
 %============================================================
-[S.name, S.len, S.rad, S.parent] = importOption(software, datafile);
+[S.name, S.len, S.rad, S.parent, S.tips] = importOption(software, datafile);
 arr = [];
 nData = length(S.name);
 
@@ -41,10 +45,34 @@ for irow = 1:nData
                     arr = [arr a];
                 end
             end
-       end
+        end
     end
-   if(method == 2)
-   end
+    if(method == 2)
+        if(~strcmp(S.parent(irow),'NA') & ~isnan(cell2mat(S.parent(irow))))
+           par  = S.parent(irow);
+            if(strcmp(software, 'C++'))
+                idx_par = find(round(cell2mat(S.name(:))) == cell2mat(par));
+            else
+            	idx_par = find(strcmp(S.name(:),par)==1);
+            end
+            if(option == 'r')
+                rk1 = cell2mat(S.rad(irow));
+                rk = cell2mat(S.rad(idx_par));
+                a = rk1/rk;
+                if(abs(a) ~= Inf)
+                    arr = [arr a];
+                end
+            end
+            if(option == 'l')
+                rk1 = cell2mat(S.len(irow));
+                rk = cell2mat(S.len(idx_par));
+                a = rk1/rk;
+                if(abs(a) ~= Inf)
+                    arr = [arr a];
+                end
+            end
+        end
+    end
    if(method == 3)
         if(~strcmp(S.parent(irow),'NA') & ~isnan(cell2mat(S.parent(irow))))
             if(option == 'r')
@@ -57,7 +85,22 @@ for irow = 1:nData
             end
         end
    end
-   
+   if(method == 4)
+       if(~strcmp(S.parent(irow),'NA') & ~isnan(cell2mat(S.parent(irow))))
+            if(option == 'r')
+                a = log(cell2mat(S.rad(irow)));
+                arr = [arr a];
+                a = log(cell2mat(S.tips(irow)));
+                arr = [arr a];
+            end
+            if(option == 'l')
+                a = log(cell2mat(S.len(irow)));
+                arr = [arr a];
+                a = log(cell2mat(S.tips(irow)));
+                arr = [arr a];
+            end
+        end
+   end
    if(method == 0 & strcmp(option,'r'))                    %used to plot frequency of radius to compare software
        arr = [arr cell2mat(S.rad(irow))];
    end

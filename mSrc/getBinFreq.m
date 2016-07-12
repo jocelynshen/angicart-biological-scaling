@@ -16,23 +16,34 @@ function [ bins, frequency ] = getBinFreq(arr, method)
 %	Jocie Shen, 6/23/16, first written
 %============================================================
  numIntervals = 13;
-if(method == 1)
+ frequency = [];
+ bins = [];
+if(method == 1 | method ==2)
     intervalWidth = (max(arr) - min(arr))/numIntervals;
     bins = min(arr):intervalWidth:max(arr);
     ncount = histc(arr,bins);
     frequency = ncount/length(arr);
+elseif(method ==3)
+	intervalWidth = (max(arr) - min(arr))/numIntervals;
+    bins = min(arr):intervalWidth:max(arr);
+    ncount = histc(arr,bins);
+    frequency = ncount/length(arr);
+    bins = log(bins);
+    frequency = log(frequency);
+    infVal = find(abs(frequency(:)) == Inf);
+    for idx = 1:length(infVal)
+        bins(idx) = [];
+    end
+    frequency = frequency(abs(frequency) ~= Inf);
+    
 else
-	bins = logspace(log10(min(arr)), log10(max(arr)), numIntervals);
-    ncount = histc(log(arr),bins);
-    frequency = log(ncount/length(arr));
-    idx = 0;
-    for ind = 1:length(frequency)
-        if(frequency(ind) == 0)
-            idx = ind + 1;
-            break;
+    for idx = 1:length(arr)
+        if(mod(idx,2) ~= 0)
+            frequency = [frequency arr(idx)];
+        else
+            bins = [bins arr(idx)];
         end
     end
-    bins = bins(1:idx)
 end
 end
 

@@ -1,48 +1,102 @@
 % ratioBased: plots all ratio-based scaling exponents
+%                   plots scale factor vs relative frequency
 %HISTORY	
-%	Jocie Shen, 6/23/16, first written
+%	Jocie Shen, 7/11/16, first written
 %============================================================
 clear all; close all; clc;
 
 %Ratio-based method: Scaling exponent a
 figure
-arr = fillArr(1, 'r', 'C++', 'ttt.txt');
-[bins, frequency] = getBinFreq(arr, 1);
+arr = fillArr(2, 'r', 'C++', 'ttt.txt');
+[bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of a (C++)','fontweight','bold');
-xlabel('radius scaling exponent a','fontweight','bold')         % x-axis label
-ylabel('frequency of the scaling exponent','fontweight','bold') % y-axis label
-mean(arr)
+xlabel('Radius scale factor','fontweight','bold')         % x-axis label
+ylabel('Relative frequency','fontweight','bold') % y-axis label
+x1 = mean(arr);
+y1=get(gca,'ylim');
+hold on
+a1 = plot([x1 x1],y1, 'r-', 'LineWidth', 1);
+x2 = median(arr);
+y2=get(gca,'ylim');
+a2 = plot([x2 x2],y2, '-.g', 'LineWidth', 1);
+legend('Relative frequency','mean', 'median');
+exp1 = -log(x1)/log(2);
+exp2 = -log(x2)/log(2);
+formatSpec = 'a (C++) %4.2f (mean)\n';
+fprintf(formatSpec,exp1)
+formatSpec = 'a (C++) %4.2f (median)\n';
+fprintf(formatSpec,exp2)
 
 %Ratio-based method: Scaling exponent b
 figure
-arr = fillArr(1, 'l', 'C++', 'ttt.txt');
-[bins, frequency] = getBinFreq(arr, 1);
+arr = fillArr(2, 'l', 'C++', 'ttt.txt');
+[bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b (C++)','fontweight','bold');
-xlabel('Length scaling exponent b','fontweight','bold')         % x-axis label
-ylabel('frequency of the scaling exponent','fontweight','bold') % y-axis label
-mean(arr)
+xlabel('Length scale factor','fontweight','bold')         % x-axis label
+ylabel('Relative frequency','fontweight','bold') % y-axis label
+x1 = mean(arr);
+y1=get(gca,'ylim');
+hold on
+a1 = plot([x1 x1],y1, 'r-', 'LineWidth', 1);
+x2 = median(arr);
+y2=get(gca,'ylim');
+a2 = plot([x2 x2],y2, '-.g', 'LineWidth', 1);
+legend('Relative frequency','mean', 'median');
+exp1 = -log(x1)/log(2);
+exp2 = -log(x2)/log(2);
+formatSpec = 'b (C++) %4.2f (mean)\n';
+fprintf(formatSpec,exp1)
+formatSpec = 'b (C++) %4.2f (median)\n';
+fprintf(formatSpec,exp2)
 
-%Ratio-based method: Scaling exponent a
+
+%ANGICART Ratio-based method: Scaling exponent a
 figure
-arr = fillArr(1, 'r', 'angicart', 'angicartdata.txt');
-[bins, frequency] = getBinFreq(arr, 1);
+arr = fillArr(2, 'r', 'angicart', 'angicartdata.txt');
+[bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
-title('Ratio-based calculation of a','fontweight','bold');
-xlabel('radius scaling exponent a (angicart)','fontweight','bold')         % x-axis label
-ylabel('frequency of the scaling exponent','fontweight','bold') % y-axis label
-mean(arr)
+title('Ratio-based calculation of a (angicart)','fontweight','bold');
+xlabel('Radius scale factor','fontweight','bold')         % x-axis label
+ylabel('Relative frequency','fontweight','bold') % y-axis label
+x1 = mean(arr);
+y1=get(gca,'ylim');
+hold on
+a1 = plot([x1 x1],y1, 'r-', 'LineWidth', 1);
+x2 = median(arr);
+y2=get(gca,'ylim');
+a2 = plot([x2 x2],y2, '-.g', 'LineWidth', 1);
+legend('Relative frequency','mean', 'median');
+exp1 = -log(x1)/log(2);
+exp2 = -log(x2)/log(2);
+formatSpec = 'a (angicart) %4.2f (mean)\n';
+fprintf(formatSpec,exp1)
+formatSpec = 'a (angicart) %4.2f (median)\n';
+fprintf(formatSpec,exp2)
 
-%Ratio-based method: Scaling exponent b
-%arr = fillArrAngicart(1, 'l');
+
+%ANGICART Ratio-based method: Scaling exponent b
 figure
-arr = fillArr(1, 'l', 'angicart', 'angicartdata.txt');
-[bins, frequency] = getBinFreq(arr, 1);
+arr = fillArr(2, 'l', 'angicart', 'angicartdata.txt');
+[bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b (angicart)','fontweight','bold');
-xlabel('Length scaling exponent b','fontweight','bold')         % x-axis label
-ylabel('frequency of the scaling exponent','fontweight','bold') % y-axis label
-mean(arr)
+xlabel('Length scale factor','fontweight','bold')         % x-axis label
+ylabel('Relative frequency','fontweight','bold') % y-axis label
+x1 = mean(arr);
+y1=get(gca,'ylim');
+hold on
+a1 = plot([x1 x1],y1, 'r-', 'LineWidth', 1);
+x2 = median(arr);
+y2=get(gca,'ylim');
+a2 = plot([x2 x2],y2, '-.g', 'LineWidth', 1);
+legend('Relative frequency','mean', 'median');
+exp1 = -log(x1)/log(2);
+exp2 = -log(x2)/log(2);
+formatSpec = 'b (angicart) %4.2f (mean)\n';
+fprintf(formatSpec,exp1)
+formatSpec = 'b (angicart) %4.2f (median)\n';
+fprintf(formatSpec,exp2)
 
 
