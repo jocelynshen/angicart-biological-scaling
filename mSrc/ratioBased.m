@@ -27,6 +27,7 @@ formatSpec = 'a (C++) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'a (C++) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
+N = length(arr)
 
 %Ratio-based method: Scaling exponent b
 figure
@@ -50,6 +51,7 @@ formatSpec = 'b (C++) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'b (C++) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
+N = length(arr)
 
 
 %ANGICART Ratio-based method: Scaling exponent a
@@ -74,7 +76,7 @@ formatSpec = 'a (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'a (angicart) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
-
+N = length(arr)
 
 %ANGICART Ratio-based method: Scaling exponent b
 figure
@@ -98,5 +100,6 @@ formatSpec = 'b (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'b (angicart) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
+N = length(arr)
 
 

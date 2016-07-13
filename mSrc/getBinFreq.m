@@ -25,16 +25,17 @@ if(method == 1 | method ==2)
     frequency = ncount/length(arr);
 elseif(method ==3)
 	intervalWidth = (max(arr) - min(arr))/numIntervals;
-    bins = min(arr):intervalWidth:max(arr);
-    ncount = histc(arr,bins);
-    frequency = ncount/length(arr);
-    bins = log(bins);
-    frequency = log(frequency);
-    infVal = find(abs(frequency(:)) == Inf);
+	bins = min(arr):intervalWidth:max(arr);
+	ncount = histc(arr,bins);
+    N = sum(ncount)
+ 	frequency1 = ncount/length(arr);
+	bins = log(bins);
+	frequency = log(frequency1);
+	infVal = find(abs(frequency(:)) == Inf);
     for idx = 1:length(infVal)
         bins(idx) = [];
     end
-    frequency = frequency(abs(frequency) ~= Inf);
+	frequency = frequency(abs(frequency) ~= Inf);
     
 else
     for idx = 1:length(arr)

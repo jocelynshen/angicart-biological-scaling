@@ -21,6 +21,10 @@ plot(fittedX, fittedY, 'r-', 'LineWidth', 1);
 exp = coeffs(1);
 formatSpec = 'a (angicart) %4.2f\n';
 fprintf(formatSpec,exp);
+yresid = frequency - fittedY;
+SSresid = sum(yresid.^2);
+SStotal = (length(frequency)-1) * var(frequency);
+rsq = 1 - SSresid/SStotal
 
 %ANGICART Regression-based method: Scaling exponent b
 figure
@@ -38,4 +42,8 @@ plot(fittedX, fittedY, 'r-', 'LineWidth', 1);
 exp = coeffs(1);
 formatSpec = 'b (angicart) %4.2f\n';
 fprintf(formatSpec,exp);
+yresid = frequency - fittedY;
+SSresid = sum(yresid.^2);
+SStotal = (length(frequency)-1) * var(frequency);
+rsq = 1 - SSresid/SStotal
 

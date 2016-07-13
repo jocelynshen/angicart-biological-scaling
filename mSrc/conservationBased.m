@@ -25,6 +25,7 @@ formatSpec = 'a (C++) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'a (C++) %4.2f (median)\n';
 fprintf(formatSpec,x2);
+length(arr)
 
 
 %C++ Conservation-based method: Scaling exponent b
@@ -47,6 +48,7 @@ formatSpec = 'b (C++) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'b (C++) %4.2f (median)\n';
 fprintf(formatSpec,x2);
+length(arr)
 
 %ANGICART Conservation-based method: Scaling exponent a
 figure
@@ -68,6 +70,7 @@ formatSpec = 'a (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'a (angicart) %4.2f (median)\n';
 fprintf(formatSpec,x2);
+length(arr)
 
 %ANGICART Conservation-based method: Scaling exponent b
 figure
@@ -89,4 +92,5 @@ formatSpec = 'b (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'b (angicart) %4.2f (median)\n';
 fprintf(formatSpec,x2);
+length(arr)
 
