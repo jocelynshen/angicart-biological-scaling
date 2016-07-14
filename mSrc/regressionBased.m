@@ -7,7 +7,7 @@ clear all; close all; clc;
 
 %ANGICART Regression-based method: Scaling exponent a
 figure
-arr = fillArr(4, 'r', 'angicart', 'angicartdata.txt');
+arr = fillArr(4, 'r', 'angicart', 'mouselungs.txt');
 [bins, frequency] = getBinFreq(arr, 4);
 scatter(bins, frequency);
 title('Regression-based calculation of a (angicart)','fontweight','bold');
@@ -24,11 +24,13 @@ fprintf(formatSpec,exp);
 yresid = frequency - fittedY;
 SSresid = sum(yresid.^2);
 SStotal = (length(frequency)-1) * var(frequency);
-rsq = 1 - SSresid/SStotal
+rsq = 1 - SSresid/SStotal;
+formatSpec = 'R2 = %4.2f \n';
+fprintf(formatSpec,rsq);
 
 %ANGICART Regression-based method: Scaling exponent b
 figure
-arr = fillArr(4, 'l', 'angicart', 'angicartdata.txt');
+arr = fillArr(4, 'l', 'angicart', 'mouselungs.txt');
 [bins, frequency] = getBinFreq(arr, 4);
 scatter(bins, frequency);
 title('Regression-based calculation of b (angicart)','fontweight','bold');
@@ -45,5 +47,7 @@ fprintf(formatSpec,exp);
 yresid = frequency - fittedY;
 SSresid = sum(yresid.^2);
 SStotal = (length(frequency)-1) * var(frequency);
-rsq = 1 - SSresid/SStotal
+rsq = 1 - SSresid/SStotal;
+formatSpec = 'R2 = %4.2f \n';
+fprintf(formatSpec,rsq);
 

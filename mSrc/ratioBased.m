@@ -27,7 +27,7 @@ formatSpec = 'a (C++) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'a (C++) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
-N = length(arr)
+
 
 %Ratio-based method: Scaling exponent b
 figure
@@ -51,12 +51,11 @@ formatSpec = 'b (C++) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'b (C++) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
-N = length(arr)
 
 
 %ANGICART Ratio-based method: Scaling exponent a
 figure
-arr = fillArr(2, 'r', 'angicart', 'angicartdata.txt');
+arr = fillArr(2, 'r', 'angicart', 'mouselungs.txt');
 [bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of a (angicart)','fontweight','bold');
@@ -76,11 +75,10 @@ formatSpec = 'a (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'a (angicart) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
-N = length(arr)
 
 %ANGICART Ratio-based method: Scaling exponent b
 figure
-arr = fillArr(2, 'l', 'angicart', 'angicartdata.txt');
+arr = fillArr(2, 'l', 'angicart', 'mouselungs.txt');
 [bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b (angicart)','fontweight','bold');
@@ -100,6 +98,4 @@ formatSpec = 'b (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,exp1)
 formatSpec = 'b (angicart) %4.2f (median)\n';
 fprintf(formatSpec,exp2)
-N = length(arr)
-
 

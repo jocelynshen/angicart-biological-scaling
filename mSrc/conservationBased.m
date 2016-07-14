@@ -25,7 +25,8 @@ formatSpec = 'a (C++) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'a (C++) %4.2f (median)\n';
 fprintf(formatSpec,x2);
-length(arr)
+formatSpec = 'N = %4.2f \n';
+fprintf(formatSpec,length(arr));
 
 
 %C++ Conservation-based method: Scaling exponent b
@@ -48,11 +49,12 @@ formatSpec = 'b (C++) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'b (C++) %4.2f (median)\n';
 fprintf(formatSpec,x2);
-length(arr)
+formatSpec = 'N = %4.2f \n';
+fprintf(formatSpec,length(arr));
 
 %ANGICART Conservation-based method: Scaling exponent a
 figure
-arr = fillArr(1, 'r', 'angicart', 'angicartdata.txt');
+arr = fillArr(1, 'r', 'angicart', 'patient2.txt');
 [bins, frequency] = getBinFreq(arr, 1);
 bar(bins, frequency, 1);
 title('Conservation-based calculation of a (angicart)','fontweight','bold');
@@ -70,11 +72,12 @@ formatSpec = 'a (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'a (angicart) %4.2f (median)\n';
 fprintf(formatSpec,x2);
-length(arr)
+formatSpec = 'N = %4.2f \n';
+fprintf(formatSpec,length(arr));
 
 %ANGICART Conservation-based method: Scaling exponent b
 figure
-arr = fillArr(1, 'l', 'angicart', 'angicartdata.txt');
+arr = fillArr(1, 'l', 'angicart', 'patient2.txt');
 [bins, frequency] = getBinFreq(arr, 1);
 bar(bins, frequency, 1);
 title('Conservation-based calculation of b (angicart)','fontweight','bold');
@@ -92,5 +95,6 @@ formatSpec = 'b (angicart) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
 formatSpec = 'b (angicart) %4.2f (median)\n';
 fprintf(formatSpec,x2);
-length(arr)
+formatSpec = 'N = %4.2f \n';
+fprintf(formatSpec,length(arr));
 

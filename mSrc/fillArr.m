@@ -62,21 +62,19 @@ for irow = 1:nData
             if(option == 'r')
                 rk1 = cell2mat(S.rad(irow));
                 rk = cell2mat(S.rad(idx_par));
-                if(rk1 < rk)
-                    a = rk1/rk;
-                    if(abs(a) ~= Inf)
-                        arr = [arr a];
-                    end
+                a = rk1/rk;
+                if(abs(a) ~= Inf)
+                    arr = [arr a];
+                    N = N + 1;
                 end
             end
             if(option == 'l')
                 rk1 = cell2mat(S.len(irow));
                 rk = cell2mat(S.len(idx_par));
-                if(rk1 < rk)
-                    a = rk1/rk;
-                    if(abs(a) ~= Inf)
-                        arr = [arr a];
-                    end
+                a = rk1/rk;
+                if(abs(a) ~= Inf)
+                    arr = [arr a];
+                    N = N + 1;
                 end
             end
         end
@@ -118,19 +116,34 @@ for irow = 1:nData
        arr = [arr cell2mat(S.len(irow))];
    end
 end
-if(N ~= 0)
-    N
-    length(arr)
-end
 if(method == 1 )
-    standardDev = std(arr)
-    CI = 1.96*standardDev/(length(arr))^.5
+    standardDev = std(arr);
+    formatSpec = 'standard deviation = %4.2f \n';
+    fprintf(formatSpec,standardDev);
+    CI = 1.96*standardDev/(length(arr))^.5;
+    formatSpec = 'CI = %4.2f \n';
+    fprintf(formatSpec,CI);
+    formatSpec = 'N = %4.2f \n';
+    fprintf(formatSpec,N);
 end
 if(method ==2)
     arr1 = -log(arr)/log(2);
     arr1 = arr1(abs(arr1) ~= Inf);
-    standardDev = std(arr1)
-    CI = 1.96*standardDev/(length(arr1))^.5
+    standardDev = std(arr);
+    formatSpec = 'standard deviation = %4.2f \n';
+    fprintf(formatSpec,standardDev);
+    CI = 1.96*standardDev/(length(arr))^.5;
+    formatSpec = 'CI = %4.2f \n';
+    fprintf(formatSpec,CI);
+    formatSpec = 'N = %4.2f \n';
+    fprintf(formatSpec,N);    
+end
+if(N ~= 0)
+    formatSpec = 'N = %4.2f \n';
+    fprintf(formatSpec,N);
+    CI = tinv(1-(.05/2),N-2)*std(arr)/sqrt(length(arr));
+    formatSpec = 'CI = %4.2f \n';
+    fprintf(formatSpec,CI);
 end
 end
 
