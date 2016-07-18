@@ -4,10 +4,12 @@
 %	Jocie Shen, 7/11/16, first written
 %============================================================
 clear all; close all; clc;
+cName = 'patient3_c.txt';
+aName = 'patient3.txt';
 
 %C++ Conservation-based method: Scaling exponent a
 figure
-arr = fillArr(1, 'r', 'C++', 'ttt.txt');
+arr = fillArr(1, 'r', 'C++', cName);
 [bins, frequency] = getBinFreq(arr, 1);
 bar(bins, frequency, 1);
 title('Conservation-based calculation of a (C++)','fontweight','bold');
@@ -29,9 +31,10 @@ formatSpec = 'N = %4.2f \n';
 fprintf(formatSpec,length(arr));
 
 
+
 %C++ Conservation-based method: Scaling exponent b
 figure
-arr = fillArr(1, 'l', 'C++', 'ttt.txt');
+arr = fillArr(1, 'l', 'C++', cName);
 [bins, frequency] = getBinFreq(arr, 1);
 bar(bins, frequency, 1);
 title('Conservation-based calculation of b (C++)','fontweight','bold');
@@ -54,7 +57,7 @@ fprintf(formatSpec,length(arr));
 
 %ANGICART Conservation-based method: Scaling exponent a
 figure
-arr = fillArr(1, 'r', 'angicart', 'patient2.txt');
+arr = fillArr(1, 'r', 'angicart', aName);
 [bins, frequency] = getBinFreq(arr, 1);
 bar(bins, frequency, 1);
 title('Conservation-based calculation of a (angicart)','fontweight','bold');
@@ -77,7 +80,7 @@ fprintf(formatSpec,length(arr));
 
 %ANGICART Conservation-based method: Scaling exponent b
 figure
-arr = fillArr(1, 'l', 'angicart', 'patient2.txt');
+arr = fillArr(1, 'l', 'angicart', aName);
 [bins, frequency] = getBinFreq(arr, 1);
 bar(bins, frequency, 1);
 title('Conservation-based calculation of b (angicart)','fontweight','bold');

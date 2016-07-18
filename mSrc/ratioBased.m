@@ -4,10 +4,12 @@
 %	Jocie Shen, 7/11/16, first written
 %============================================================
 clear all; close all; clc;
+cName = 'patient3_c.txt';
+aName = 'patient3.txt';
 
 %Ratio-based method: Scaling exponent a
 figure
-arr = fillArr(2, 'r', 'C++', 'ttt.txt');
+arr = fillArr(2, 'r', 'C++', cName);
 [bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of a (C++)','fontweight','bold');
@@ -31,7 +33,7 @@ fprintf(formatSpec,exp2)
 
 %Ratio-based method: Scaling exponent b
 figure
-arr = fillArr(2, 'l', 'C++', 'ttt.txt');
+arr = fillArr(2, 'l', 'C++', cName);
 [bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b (C++)','fontweight','bold');
@@ -55,7 +57,7 @@ fprintf(formatSpec,exp2)
 
 %ANGICART Ratio-based method: Scaling exponent a
 figure
-arr = fillArr(2, 'r', 'angicart', 'mouselungs.txt');
+arr = fillArr(2, 'r', 'angicart', aName);
 [bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of a (angicart)','fontweight','bold');
@@ -78,7 +80,7 @@ fprintf(formatSpec,exp2)
 
 %ANGICART Ratio-based method: Scaling exponent b
 figure
-arr = fillArr(2, 'l', 'angicart', 'mouselungs.txt');
+arr = fillArr(2, 'l', 'angicart', aName);
 [bins, frequency] = getBinFreq(arr, 2);
 bar(bins, frequency, 1);
 title('Ratio-based calculation of b (angicart)','fontweight','bold');

@@ -18,7 +18,7 @@ function arr = fillArr(method, option, software, datafile)
 %============================================================
 [S.name, S.len, S.rad, S.parent, S.tips] = importOption(software, datafile);
 arr = [];
-nData = length(S.name);
+nData = length(S.name)-1;
 N = 0;
 for irow = 1:nData
     if(~strcmp(S.parent(irow),'NA') & ~isnan(cell2mat(S.parent(irow))))
@@ -83,11 +83,15 @@ for irow = 1:nData
         if(~strcmp(S.parent(irow),'NA') & ~isnan(cell2mat(S.parent(irow))))
             if(option == 'r')
                 a = (cell2mat(S.rad(irow)));
-                arr = [arr a];
+                if(a ~= 0)
+                    arr = [arr a];
+                end
             end
             if(option == 'l')
                 a =(cell2mat(S.len(irow)));
-                arr = [arr a];
+                if(a ~= 0)
+                    arr = [arr a];
+                end
             end
         end
    end
@@ -96,54 +100,29 @@ for irow = 1:nData
             if(option == 'r')
                 a = log(cell2mat(S.rad(irow)));
                 arr = [arr a];
-                a = log(cell2mat(S.tips(irow)));
+                if(strcmp(software, 'C++'))
+                    a = log(S.tips(irow));
+                end
+                if(strcmp(software, 'angicart'))
+                    a = log(cell2mat(S.tips(irow)));
+                end
                 arr = [arr a];
                 N = N + 1;
             end
             if(option == 'l')
                 a = log(cell2mat(S.len(irow)));
                 arr = [arr a];
-                a = log(cell2mat(S.tips(irow)));
+                if(strcmp(software, 'C++'))
+                    a = log(S.tips(irow));
+                end
+                if(strcmp(software, 'angicart'))
+                    a = log(cell2mat(S.tips(irow)));
+                end
                 arr = [arr a];
                 N = N+1;
             end
         end
    end
-   if(method == 0 & strcmp(option,'r'))                    %used to plot frequency of radius to compare software
-       arr = [arr cell2mat(S.rad(irow))];
-   end
-   if(method == 0 & strcmp(option,'l'))                    %used to plot frequency of length to compare software
-       arr = [arr cell2mat(S.len(irow))];
-   end
-end
-if(method == 1 )
-    standardDev = std(arr);
-    formatSpec = 'standard deviation = %4.2f \n';
-    fprintf(formatSpec,standardDev);
-    CI = 1.96*standardDev/(length(arr))^.5;
-    formatSpec = 'CI = %4.2f \n';
-    fprintf(formatSpec,CI);
-    formatSpec = 'N = %4.2f \n';
-    fprintf(formatSpec,N);
-end
-if(method ==2)
-    arr1 = -log(arr)/log(2);
-    arr1 = arr1(abs(arr1) ~= Inf);
-    standardDev = std(arr);
-    formatSpec = 'standard deviation = %4.2f \n';
-    fprintf(formatSpec,standardDev);
-    CI = 1.96*standardDev/(length(arr))^.5;
-    formatSpec = 'CI = %4.2f \n';
-    fprintf(formatSpec,CI);
-    formatSpec = 'N = %4.2f \n';
-    fprintf(formatSpec,N);    
-end
-if(N ~= 0)
-    formatSpec = 'N = %4.2f \n';
-    fprintf(formatSpec,N);
-    CI = tinv(1-(.05/2),N-2)*std(arr)/sqrt(length(arr));
-    formatSpec = 'CI = %4.2f \n';
-    fprintf(formatSpec,CI);
 end
 end
 
