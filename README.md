@@ -16,9 +16,13 @@ https://drive.google.com/drive/folders/1o7fbUU70ivLRVF-NcohQUgnZu-PkPM9U?usp=sha
 * files labeled with a _c extension are outputs of the C++ data (ie. patient1_c.txt)
 
 ### Running the Code
-Notes:
-* The directory with data files must be added to your project path
-* Make sure the MATLAB Statistics and Machine Learning toolbox is installed
+Notes: The directory with data files must be added to your project path. Make sure the MATLAB Statistics and Machine Learning toolbox is installed
+
+1. Run calcAll.m to generate all plots for a single dataset (change cName for the filename of the C++ data and aName for the filename of the Angicart data)
+1. compareLen.m and compareRad.m generate histograms to compare the lengths of vessels and the radii of vessels
+1. ratioBased.m, conservationBased.m, regressionBased.m, and distributionBased.m generate plots using each of the methods for both length and radii of a given dataset
+1. Helper functions: importOption.m, fillArr.m, getBinFreq.m, calcA.m
+
 
 ### Contribution
 If you would like to contribute to this project, visit https://vsavage.faculty.biomath.ucla.edu/Code/HTML/indexangicplusplus.html
