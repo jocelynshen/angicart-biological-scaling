@@ -1,4 +1,4 @@
-% conservationBased: plots all conservation-based scaling exponents
+% conservationBased: plots scaling exponents for all four methods
 %                    plots scaling exponent vs frequency
 %HISTORY	
 %	Jocie Shen, 7/11/16, first written
@@ -28,7 +28,7 @@ formatSpec = 'N = %4.2f \n';
 fprintf(formatSpec,length(arr));
 formatSpec = 'a (C++) %4.2f (mean)\n';
 fprintf(formatSpec,x1);
-[b,bint] = regress(frequency(:), bins(:));
+[b,bint] = regress(frequency(:), bins(:), 95);
 CI = (abs(bint(1)) + abs(bint(2)))/2;
 [b,bint,r,rint,stats] = regress(frequency(:),bins(:),95);
 formatSpec = 'CI = %4.2f (mean)\n';
